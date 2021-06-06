@@ -88,5 +88,57 @@ Ores_Data = {'Veldspar':     {'Refinery':{'Tritanium':400},
                               'volume':16.0},
     }
 
+#Variants have mineral yield modifier
+Ore_Variants = {'Veldspar':     {'Veldspar':1.00,'Concentrated Veldspar':1.05,'Dense Veldspar':1.10,'Stable Veldspar':1.15},
+                'Scordite':     {'Scordite':1.00,'Condensed Scordite':1.05,'Massive Scordite':1.10,'Glossy Scordite':1.15},
+                'Pyroxeres':    {'Pyroxeres':1.00,'Solid Pyroxeres':1.05,'Viscous Pyroxeres':1.10,'Opulent Pyroxeres':1.15},
+                'Plagioclase':  {'Plagioclase':1.00,'Azure Plagioclase':1.05,'Rich Plagioclase':1.10,'Sparkling Plagioclase':1.15},
+                'Omber':        {'Omber':1.00,'Silvery Omber':1.05,'Golden Omber':1.10,'Platinoid Omber':1.15},
+                'Kernite':      {'Kernite':1.00,'Luminous Kernite':1.05,'Fiery Kernite':1.10,'Resplendant Kernite':1.15},
+                'Jaspet':       {'Jaspet':1.00,'Pure Jaspet':1.05,'Pristine Jaspet':1.10,'Immaculate Jaspet':1.15},
+                'Hemorphite':   {'Hemorphite':1.00,'Vivid Hemorphite':1.05,'Radiant Hemorphite':1.10,'Scintillating Hemorphite':1.15},
+                'Hedbergite':   {'Hedbergite':1.00,'Vitric Hedbergite':1.05,'Glazed Hedbergite':1.10,'Lustrous Hedbergite':1.15},
+                'Gneiss':       {'Gneiss':1.00,'Iridescent Gneiss':1.05,'Prismatic Gneiss':1.10,'Brilliant Gneiss':1.15},
+                'Dark Ochre':   {'Dark Ochre':1.00,'Onyx Ochre':1.05,'Obsidian Ochre':1.10,'Jet Ochre':1.15},
+                'Crokite':      {'Crokite':1.00,'Sharp Crokite':1.05,'Crystalline Crokite':1.10,'Pellucid Crokite':1.15},
+                'Bistot':       {'Bistot':1.00,'Triclinic Bistot':1.05,'Monoclinic Bistot':1.10,'Cubic Bistot':1.15},
+                'Arkonor':      {'Arkonor':1.00,'Crimson Arkonor':1.05,'Prime Arkonor':1.10,'Flawless Arkonor':1.15},
+                'Mercoxit':     {'Mercoxit':1.00,'Magma Mercoxit':1.05,'Vitreous Mercoxit':1.10},
+                }
+
+#Returns yield by mineral entered, sorted by key
+#Keys:  default/None      - return mineral yield from database
+#       volume            - return mineral yield from database per 100 units of uncompressed ore
+#       compressed_volume - return mineral yield from database per 1 unit of compressed ore
+def yield_search(ore:str, mineral:str, key:str = 'default') -> int:
+    if key == 'default':
+        return Ores_Data[ore]['Refinery'][mineral] if mineral in Ores_Data[ore]['Refinery'] else 0
+    elif key == 'volume':
+        return round(Ores_Data[ore]['Refinery'][mineral]/Ores_Data[ore]['volume']/100,3)\
+             if mineral in Ores_Data[ore]['Refinery'] else 0
+    elif key == 'com_volume':
+        return round(Ores_Data[ore]['Refinery'][mineral]/Ores_Data[ore]['compressed_volume'],3)\
+             if mineral in Ores_Data[ore]['Refinery'] and 'compressed_volume' in Ores_Data[ore] else 0
+
+
+
+#Returns a ore ranking list of yields by mineral entered, sorted by key
+def yield_by_mineral(mineral:str, key:str = 'default', variants:bool = None) -> list:
+    if variants == None:
+        return [o + f": {yield_search(o,mineral,key)}" for o in\
+                sorted([i for i in Ores_Data], key = lambda i:yield_search(i,mineral,key),\
+                      reverse = True)]
+
+
+
+
+
+
+
+
+
+
+
+
 
 
