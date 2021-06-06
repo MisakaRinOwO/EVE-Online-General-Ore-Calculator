@@ -1,5 +1,10 @@
 from DataBase import*
 from pprint import pprint
+import os
 
-l = yield_by_mineral('Tritanium')
-pprint(l)
+init_cache()
+#l = yield_by_mineral('Tritanium')
+#pprint(l)
+
+yield_by_mineral('Tritanium')
+pprint(yield_by_mineral('Tritanium','com_volume'))

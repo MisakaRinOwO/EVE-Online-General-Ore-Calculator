@@ -1,3 +1,5 @@
+import os
+from pathlib import Path
 #Based on the first resource distribution update
 #https://www.eveonline.com/news/view/resource-distribution-update
 
@@ -25,6 +27,7 @@
 Minerals = ['Tritanium','Pyerite','Mexallon','Isogen','Nocxium','Zydrine','Megacyte','Morphite']
 
 Ores = ['Veldspar','Scordite','Pyroxeres','Plagioclase','Omber','Kernite','Jaspet','Hemorphite','Hedbergite','Gneiss','Dark Ochre','Crokite','Bistot','Arkonor','Mercoxit','Spodumain','Bezdnacine','Rakovene','Talassonite']
+
 
 
 #Data for ores are based on 100 unit of base ores
@@ -111,28 +114,62 @@ Ore_Variants = {'Veldspar':     {'Veldspar':1.00,'Concentrated Veldspar':1.05,'D
 #       volume            - return mineral yield from database per 100 units of uncompressed ore
 #       compressed_volume - return mineral yield from database per 1 unit of compressed ore
 def yield_search(ore:str, mineral:str, key:str = 'default') -> int:
-    if key == 'default':
-        return Ores_Data[ore]['Refinery'][mineral] if mineral in Ores_Data[ore]['Refinery'] else 0
-    elif key == 'volume':
-        return round(Ores_Data[ore]['Refinery'][mineral]/Ores_Data[ore]['volume']/100,3)\
-             if mineral in Ores_Data[ore]['Refinery'] else 0
-    elif key == 'com_volume':
-        return round(Ores_Data[ore]['Refinery'][mineral]/Ores_Data[ore]['compressed_volume'],3)\
-             if mineral in Ores_Data[ore]['Refinery'] and 'compressed_volume' in Ores_Data[ore] else 0
-
+    if f"yield_search({ore},{mineral},{key})" not in cache:
+        if key == 'default':
+            cache[f"yield_search({ore},{mineral},{key})"] = (r := Ores_Data[ore]['Refinery'][mineral] if mineral in Ores_Data[ore]['Refinery'] else 0)
+            cache_update()
+            return r
+        elif key == 'volume':
+            cache[f"yield_search({ore},{mineral},{key})"] = (r := round(Ores_Data[ore]['Refinery'][mineral]/Ores_Data[ore]['volume']/100,3)\
+                                                             if mineral in Ores_Data[ore]['Refinery'] else 0)
+            cache_update()
+            return r
+        elif key == 'com_volume':
+            cache[f"yield_search({ore},{mineral},{key})"] = (r := round(Ores_Data[ore]['Refinery'][mineral]/Ores_Data[ore]['compressed_volume'],3)\
+                                                             if mineral in Ores_Data[ore]['Refinery'] and 'compressed_volume' in Ores_Data[ore] else 0)
+            cache_update()
+            return r
+    else:
+        return cache[f"yield_search({ore},{mineral},{key})"]
 
 
 #Returns a ore ranking list of yields by mineral entered, sorted by key
 def yield_by_mineral(mineral:str, key:str = 'default', variants:bool = None) -> list:
-    if variants == None:
-        return [o + f": {yield_search(o,mineral,key)}" for o in\
-                sorted([i for i in Ores_Data], key = lambda i:yield_search(i,mineral,key),\
-                      reverse = True)]
+    if f"yield_by_mineral({mineral},{key},{variants})" not in cache:
+        if variants == None:
+            cache[f"yield_by_mineral({mineral},{key},{variants})"] = \
+            (r:=[o + f": {yield_search(o,mineral,key)}" for o in\
+                 sorted([i for i in Ores_Data], key = lambda i:yield_search(i,mineral,key), reverse = True)])
+        cache_update()
+        return r
+    else:
+        return cache[f"yield_by_mineral({mineral},{key},{variants})"]
 
+#Initial cache variable from locak cache file
+def init_cache():
+    global cache
+    if file_exists():
+        f = open(os.getcwd()+'\\cache.rin','r')
+        rl = f.readline()
+        if rl != '':
+            cache = eval(rl)
+        else:
+            cache = dict()
+        f.close()
+    else:
+        f = open(os.getcwd()+'\\cache.rin','x')
+        cache = dict()
+        f.close()
 
+#Updates the local cache file with current cache variable
+def cache_update():
+    f = open(os.getcwd()+'\\cache.rin','w')
+    f.write(str(cache))
+    f.close()
 
-
-
+#check whether or not local cache file exists
+def file_exists():
+    return any('cache.rin' in str(p) for p in list(Path(os.getcwd()).iterdir()))
 
 
 
