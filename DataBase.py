@@ -179,19 +179,15 @@ def file_exists():
 #fetch item id for minerals and basic ores from API and add them to local cache file
 def generate_regular_id_to_cache():
     if 'ID' not in cache or (len(cache['ID']) != len(Ores)+len(Minerals) and len(cache['ID']) != sum_variants()+len(Minerals)+3):
-        print(1)
-        print(len(cache['ID']))
-        print(len(Ores)+len(Minerals))
-        print(sum_variants()+len(Minerals))
         cache['ID'] = dict()
         for ore in Ores:
             if ore not in cache['ID']:
                 query = get_item_id(ore)
-                cache['ID'][query['typeName']] = query['typeID']
+                cache['ID'][query['typeName']] = str(query['typeID'])
         for mineral in Minerals:
             if mineral not in cache['ID']:
                 query = get_item_id(mineral)
-                cache['ID'][query['typeName']] = query['typeID']
+                cache['ID'][query['typeName']] = str(query['typeID'])
         cache_update()
         
 #get total counts of ore variants, including the basic variant
@@ -207,7 +203,7 @@ def generate_additional_id_to_cache():
             for variant in variants:
                 if variant not in cache['ID']:
                     query = get_item_id(variant)
-                    cache['ID'][query['typeName']] = query['typeID']
+                    cache['ID'][query['typeName']] = str(query['typeID'])
         cache_update()
 
 

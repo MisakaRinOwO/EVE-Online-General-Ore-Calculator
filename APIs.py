@@ -12,3 +12,6 @@ def get_item_id(item:str):
             response.close()
         if type(r_obj) == dict:
             return r_obj
+        
+def get_item_price(item:str,location:int):
+    pass
