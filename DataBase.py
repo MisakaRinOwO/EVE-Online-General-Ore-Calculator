@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+from APIs import*
 #Based on the first resource distribution update
 #https://www.eveonline.com/news/view/resource-distribution-update
 
@@ -107,12 +108,16 @@ Ore_Variants = {'Veldspar':     {'Veldspar':1.00,'Concentrated Veldspar':1.05,'D
                 'Bistot':       {'Bistot':1.00,'Triclinic Bistot':1.05,'Monoclinic Bistot':1.10,'Cubic Bistot':1.15},
                 'Arkonor':      {'Arkonor':1.00,'Crimson Arkonor':1.05,'Prime Arkonor':1.10,'Flawless Arkonor':1.15},
                 'Mercoxit':     {'Mercoxit':1.00,'Magma Mercoxit':1.05,'Vitreous Mercoxit':1.10},
+                'Spodumain':    {'Spodumain':1.00,'Bright Spodumain':1.05,'Gleaming Spodumain':1.10,'Dazzling Spodumain':1.15},
                 }
 
 #Returns yield by mineral entered, sorted by key
 #Keys:  default/None      - return mineral yield from database
 #       volume            - return mineral yield from database per 100 units of uncompressed ore
 #       compressed_volume - return mineral yield from database per 1 unit of compressed ore
+class IDError:
+    pass
+
 def yield_search(ore:str, mineral:str, key:str = 'default') -> int:
     if f"yield_search({ore},{mineral},{key})" not in cache:
         if key == 'default':
@@ -171,11 +176,39 @@ def cache_update():
 def file_exists():
     return any('cache.rin' in str(p) for p in list(Path(os.getcwd()).iterdir()))
 
-
-
-
-
-
+#fetch item id for minerals and basic ores from API and add them to local cache file
+def generate_regular_id_to_cache():
+    if 'ID' not in cache or (len(cache['ID']) != len(Ores)+len(Minerals) and len(cache['ID']) != sum_variants()+len(Minerals)+3):
+        print(1)
+        print(len(cache['ID']))
+        print(len(Ores)+len(Minerals))
+        print(sum_variants()+len(Minerals))
+        cache['ID'] = dict()
+        for ore in Ores:
+            if ore not in cache['ID']:
+                query = get_item_id(ore)
+                cache['ID'][query['typeName']] = query['typeID']
+        for mineral in Minerals:
+            if mineral not in cache['ID']:
+                query = get_item_id(mineral)
+                cache['ID'][query['typeName']] = query['typeID']
+        cache_update()
+        
+#get total counts of ore variants, including the basic variant
+def sum_variants():
+        return sum([len(i) for i in list(Ore_Variants.values())])
+    
+#fetch item id for all ore variants from API and add them to local cache file
+def generate_additional_id_to_cache():
+    if 'ID' not in cache:
+        raise IDError('ID not in cache, please run generate_regular_id_to_cache() first.')
+    if len(cache['ID']) != sum_variants()+len(Minerals)+3:
+        for variants in list(Ore_Variants.values()):
+            for variant in variants:
+                if variant not in cache['ID']:
+                    query = get_item_id(variant)
+                    cache['ID'][query['typeName']] = query['typeID']
+        cache_update()
 
 
 
