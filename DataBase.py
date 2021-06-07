@@ -153,7 +153,7 @@ def yield_by_mineral(mineral:str, key:str = 'default', variants:bool = None) -> 
 #Initial cache variable from locak cache file
 def init_cache():
     global cache
-    if file_exists():
+    if file_exists('cache.rin'):
         f = open(os.getcwd()+'\\cache.rin','r')
         rl = f.readline()
         if rl != '':
@@ -172,9 +172,9 @@ def cache_update():
     f.write(str(cache))
     f.close()
 
-#check whether or not local cache file exists
-def file_exists():
-    return any('cache.rin' in str(p) for p in list(Path(os.getcwd()).iterdir()))
+#check whether or not local file/directories exists
+def file_exists(name):
+    return any(name in str(p) for p in list(Path(os.getcwd()).iterdir()))
 
 #fetch item id for minerals and basic ores from API and add them to local cache file
 def generate_regular_id_to_cache():
@@ -207,4 +207,12 @@ def generate_additional_id_to_cache():
         cache_update()
 
 
-
+def get_cache(filter: str = 'all') -> dict:
+    r = dict()
+    if filter == 'all':
+        return cache
+    elif filter == 'history':
+        for c in cache:
+            if c != 'ID':
+                r.update({c:cache[c]})
+        return r
