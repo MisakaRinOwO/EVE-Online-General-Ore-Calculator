@@ -1,4 +1,4 @@
-import os
+import os, inspect
 from pathlib import Path
 from APIs import*
 #Based on the first resource distribution update
@@ -217,11 +217,21 @@ def get_cache(filter: str = 'all') -> dict:
                 r.update({c:cache[c]})
         return r
 
+
+#Decorator function for quick cache uppdates(update cache)
+def uc(f):
+    def wrapper():
+        pass
+    return wrapper
+
+
+
 #Explanations about reprocessing:
 #   usually reprocessing happens in structure Tatara or Athanor
 #   Tatara has a role bonus of 4%, Athanor has 2%
 #   skill_reprocessing: max at 5 levels, +3% yield per level
 #   skill_reprocessing_efficiency: max at 5 levels, +2% yield per level
+
 
 
 class reprocessing:
@@ -230,8 +240,7 @@ class reprocessing:
         
         
         
-        
-        
+
         
         
         
