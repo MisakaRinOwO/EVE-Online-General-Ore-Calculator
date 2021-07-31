@@ -31,6 +31,7 @@ Ores = ['Veldspar','Scordite','Pyroxeres','Plagioclase','Omber','Kernite','Jaspe
 
 
 
+
 #Data for ores are based on 100 unit of base ores
 #   or 1 unit of compressed base ores
 Ores_Data = {'Veldspar':     {'Refinery':{'Tritanium':400},
@@ -226,18 +227,7 @@ def uc(f):
 
 
 
-#Explanations about reprocessing:
-#   usually reprocessing happens in structure Tatara or Athanor
-#   Tatara has a role bonus of 4%, Athanor has 2%
-#   skill_reprocessing: max at 5 levels, +3% yield per level
-#   skill_reprocessing_efficiency: max at 5 levels, +2% yield per level
 
-
-
-class reprocessing:
-    def __init__(self,structure = None, rig = None, skill_reprocessing = 0, skill_reprocessing_efficiency = 0, implant = None):
-        self.structure = structure
-        
         
         
 
