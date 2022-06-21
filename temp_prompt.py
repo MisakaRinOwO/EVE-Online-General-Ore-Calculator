@@ -1,9 +1,9 @@
-from DataBase import*
+from DataBase_Ore import*
 from refinary_bonus import*
 from pprint import pprint
 import os,Profile
 from APIs import*
-'''
+
 init_cache()
 generate_regular_id_to_cache()
 generate_additional_id_to_cache()
@@ -13,7 +13,7 @@ pprint(get_cache('history'))
 
 print(list(Path(os.getcwd()).iterdir()))
 p = Profile.Profile('tat')
-'''
+
 
 r = reprocessing()
 r.set_implant(804)

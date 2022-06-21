@@ -120,42 +120,45 @@ class IDError:
     pass
 
 def yield_search(ore:str, mineral:str, key:str = 'default') -> int:
-    if f"yield_search({ore},{mineral},{key})" not in cache:
+    ckey = f"yield_search({ore},{mineral},{key})"
+    if ckey not in cache:
         if key == 'default':
-            cache[f"yield_search({ore},{mineral},{key})"] = (r := Ores_Data[ore]['Refinery'][mineral] if mineral in Ores_Data[ore]['Refinery'] else 0)
+            cache[ckey] = (r := Ores_Data[ore]['Refinery'][mineral] if mineral in Ores_Data[ore]['Refinery'] else 0)
             cache_update()
             return r
         elif key == 'volume':
-            cache[f"yield_search({ore},{mineral},{key})"] = (r := round(Ores_Data[ore]['Refinery'][mineral]/Ores_Data[ore]['volume']/100,3)\
+            cache[ckey] = (r := round(Ores_Data[ore]['Refinery'][mineral]/Ores_Data[ore]['volume']/100,3)\
                                                              if mineral in Ores_Data[ore]['Refinery'] else 0)
             cache_update()
             return r
         elif key == 'com_volume':
-            cache[f"yield_search({ore},{mineral},{key})"] = (r := round(Ores_Data[ore]['Refinery'][mineral]/Ores_Data[ore]['compressed_volume'],3)\
+            cache[ckey] = (r := round(Ores_Data[ore]['Refinery'][mineral]/Ores_Data[ore]['compressed_volume'],3)\
                                                              if mineral in Ores_Data[ore]['Refinery'] and 'compressed_volume' in Ores_Data[ore] else 0)
             cache_update()
             return r
+            
     else:
-        return cache[f"yield_search({ore},{mineral},{key})"]
+        return cache[ckey]
 
 
 #Returns a ore ranking list of yields by mineral entered, sorted by key
 def yield_by_mineral(mineral:str, key:str = 'default', variants:bool = None) -> list:
-    if f"yield_by_mineral({mineral},{key},{variants})" not in cache:
+    ckey = f"yield_by_mineral({mineral},{key},{variants})"
+    if ckey not in cache:
         if variants == None:
-            cache[f"yield_by_mineral({mineral},{key},{variants})"] = \
+            cache[ckey] = \
             (r:=[o + f": {yield_search(o,mineral,key)}" for o in\
                  sorted([i for i in Ores_Data], key = lambda i:yield_search(i,mineral,key), reverse = True)])
         cache_update()
         return r
     else:
-        return cache[f"yield_by_mineral({mineral},{key},{variants})"]
+        return cache[ckey]
 
-#Initial cache variable from locak cache file
+#Initial cache variable from local cache file
 def init_cache():
     global cache
-    if file_exists('cache.rin'):
-        f = open(os.getcwd()+'\\cache.rin','r')
+    if file_exists('cache.txt'):
+        f = open(os.getcwd()+'\\cache.txt','r')
         rl = f.readline()
         if rl != '':
             cache = eval(rl)
@@ -163,13 +166,13 @@ def init_cache():
             cache = dict()
         f.close()
     else:
-        f = open(os.getcwd()+'\\cache.rin','x')
+        f = open(os.getcwd()+'\\cache.txt','x')
         cache = dict()
         f.close()
 
 #Updates the local cache file with current cache variable
 def cache_update():
-    f = open(os.getcwd()+'\\cache.rin','w')
+    f = open(os.getcwd()+'\\cache.txt','w')
     f.write(str(cache))
     f.close()
 

@@ -13,5 +13,5 @@ def get_item_id(item:str):
         if type(r_obj) == dict:
             return r_obj
         
-def get_item_price(item:str,location:int):
+def get_item_price(item:str,location:int = 30000142):
     pass

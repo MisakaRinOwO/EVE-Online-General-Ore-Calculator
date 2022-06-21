@@ -4,7 +4,7 @@
 #   skill_reprocessing: max at 5 levels, +3% yield per level
 #   skill_reprocessing_efficiency: max at 5 levels, +2% yield per level
 #   needs to add special ore skills later
-from numpy.doc import structured_arrays
+# from numpy.doc import structured_arrays
 class InvalidParamError:
     pass
 

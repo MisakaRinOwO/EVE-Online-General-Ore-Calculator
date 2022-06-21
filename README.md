@@ -5,4 +5,7 @@
 Project initialized, will be working on database shortly.
 
 6/7/2021
-Database finished. Cache system added. Planning on other features.
+Database_Ore finished. Cache system added. Planning on other features.
+
+6/20/2022
+Working on webpage implementations.
