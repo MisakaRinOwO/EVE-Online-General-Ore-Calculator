@@ -9,3 +9,6 @@ Database_Ore finished. Cache system added. Planning on other features.
 
 6/20/2022
 Working on webpage implementations.
+
+6/21/2022
+webpage framework completed, working on javascript.

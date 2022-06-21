@@ -29,6 +29,74 @@
                 <h2>Attribute Settings</h2>
                 <p style="color:red">This website is created for personal use only, regular maintainance is not guaranteed and Misaka is not reponsible for any loss resulting from using this website!</p>
                 <br>
+
+                <form id="attr">
+                    <div id="cattr">
+                        <h4>Character Attribute</h4>
+                        <label for="Repro">Reprocessing</label><br>
+                        <input type="range" id="Repro" name="Reprocessing" value="0" max="5"  oninput="this.nextElementSibling.value = this.value">
+                        <output>0</output><br>
+                        <label for="ReproEff">Reprocessing Efficiency</label><br>
+                        <input type="range" id="ReproEff" name="Reprocessing Efficiency" value="0" max="5"  oninput="this.nextElementSibling.value = this.value">
+                        <output>0</output><br>
+                        <label for="Imp">Implants (Zainou 'Beancounter' Reprocessing)</label><br>
+                        <select id="Imp" name="Implants" value="None">
+                            <option value="None">None</option>
+                            <option value="801">RX-801</option>
+                            <option value="802">RX-802</option>
+                            <option value="804">RX-804</option>
+                        </select><br>
+                    </div>
+                    <br>
+                    <div id="oattr">
+                        <h4>Ore Skill Attribute</h4>
+                        <label for="simore">Simple Ore Processing</label><br>
+                        <input type="range" id="simore" name="Simple Ore Processing" value="0" max="5"  oninput="this.nextElementSibling.value = this.value">
+                        <output>0</output><br>
+                        <label for="cohore">Coherent Ore Processing</label><br>
+                        <input type="range" id="cohore" name="Coherent Ore Processing" value="0" max="5"  oninput="this.nextElementSibling.value = this.value">
+                        <output>0</output><br>
+                        <label for="varore">Variegated Ore Processing</label><br>
+                        <input type="range" id="varore" name="Variegated Ore Processing" value="0" max="5"  oninput="this.nextElementSibling.value = this.value">
+                        <output>0</output><br>
+                        <label for="comore">Complex Ore Processing</label><br>
+                        <input type="range" id="comore" name="Complex Ore Processing" value="0" max="5"  oninput="this.nextElementSibling.value = this.value">
+                        <output>0</output><br>
+                        <label for="merore">Mercoxit Ore Processing</label><br>
+                        <input type="range" id="merore" name="Mercoxit Ore Processing" value="0" max="5"  oninput="this.nextElementSibling.value = this.value">
+                        <output>0</output><br>
+                        <button type="button">Set Max Level<br>
+                    </div>
+                    <br>
+                    <div id="eattr">
+                        <h4>Environment Attribute</h4>
+                        <label for="sec">Space Security Level</label><br>
+                        <select id="sec" name="Security" value="ns">
+                            <option value="ns">Null Sec/Wormhole (<0.1)</option>
+                            <option value="ls">Low Sec (0.1-0.4)</option>
+                            <option value="hs">High Sec (>0.5)</option>
+                        </select><br><br>
+                        <label for="stru">Structure</label><br>
+                        <select id="stru" name="Structure" value="cit">
+                            <!-- <option value="sta">Station</option> -->
+                            <option value="cit">Citadels</option>
+                            <option value="ath">Athanor</option>
+                            <option value="tat">Tatara</option>
+                        </select><br><br>
+                        <label for="rig">Reprocessing Rigs</label><br>
+                        <select id="stru" name="Structure" value="None">
+                            <option value="None">None</option>
+                            <option value="T1">T1</option>
+                            <option value="T2">T2</option>
+                        </select><br><br>
+                    </div>
+                    
+                    <input type="Submit" value="Save">
+                </form>
+                <hr>
+                <div id="ceff">
+                    <h2>Current Efficiency</h2>
+                </div>
             </main>
             <hr>
             <footer>
