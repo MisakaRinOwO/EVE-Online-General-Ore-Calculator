@@ -12,3 +12,7 @@ Working on webpage implementations.
 
 6/21/2022
 webpage framework completed, working on javascript.
+basic html-javascript interaction completed.
+added storing system for attributes
+Combined Attribute page with Calculator because difficulties of restoring data to refreshed website.
+Working on efficiency calculation and display next
