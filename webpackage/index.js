@@ -8,8 +8,8 @@ var VarOre=0
 var ComOre=0
 var MerOre=0
 
-var Sec="ns"
-var Str="cit"
+var Sec=0
+var Str=0
 var Rig=0
 
 function Display(obj, val){
@@ -59,7 +59,7 @@ function SetCattrMax(){
     reproeff.value=5
     Display(reproeff,5)
     let imp = document.getElementById("Imp")
-    imp.value=804
+    imp.value=0.04
 }
 
 function SetOattrMax(){
@@ -80,6 +80,40 @@ function SetOattrMax(){
     Display(merore,5)
 }
 
+function DisplayYield(){
+    ParseAll()
+    var BaseYield = ((50+Rig)*(1+Sec))*(1+Str)*(1+(0.03*Repro))*(1+(0.02*ReproEff))*(1+Imp)
+    var SimYield = document.getElementById("SimYield")
+    var CohYield = document.getElementById("CohYield")
+    var VarYield = document.getElementById("VarYield")
+    var ComYield = document.getElementById("ComYield")
+    var MerYield = document.getElementById("MerYield")
+
+    SimYield.innerHTML="Simple Ore Efficiency: "+ Round2(BaseYield*(1+(0.02*SimOre))) +"%"
+    CohYield.innerHTML="Coherent Ore Efficiency: "+ Round2(BaseYield*(1+(0.02*CohOre))) +"%"
+    VarYield.innerHTML="Variegated Ore Efficiency: "+ Round2(BaseYield*(1+(0.02*VarOre))) +"%"
+    ComYield.innerHTML="Complex Ore Efficiency: "+ Round2(BaseYield*(1+(0.02*ComOre))) +"%"
+    MerYield.innerHTML="Mercoxit Ore Efficiency: "+ Round2(BaseYield*(1+(0.02*MerOre))) +"%"
+    
+}
+
+function ParseAll(){
+    Repro=parseFloat(Repro)
+    ReproEff=parseFloat(ReproEff)
+    Imp=parseFloat(Imp)
+    SimOre=parseFloat(SimOre)
+    CohOre=parseFloat(CohOre)
+    VarOre=parseFloat(VarOre)
+    ComOre=parseFloat(ComOre)
+    MerOre=parseFloat(MerOre)
+    Sec=parseFloat(Sec)
+    Str=parseFloat(Str)
+    Rig=parseFloat(Rig)
+}
+
+function Round2(num){
+    return Math.round(num * 100) /100
+}
 function displayall(){
     console.log("Repro",Repro)
     console.log("ReproEff",ReproEff)

@@ -19,7 +19,7 @@
                     <div>
                         <span><a href="index.html">Home</a></span>
                         <span><a href="ycalculator.html">Yield Calculator</a></span>
-                        <span><a href="asettings.html">Attribute Settings</a></span>
+                        <!-- <span><a href="asettings.html">Attribute Settings</a></span> -->
                         <span><a href="resources.html">Resources</a></span>
                     </div>
                 </nav>
@@ -42,9 +42,9 @@
                             <label for="Imp">Implants (Zainou 'Beancounter' Reprocessing)</label><br>
                             <select id="Imp" name="Implants" value="0">
                                 <option value="0">None</option>
-                                <option value="801">RX-801</option>
-                                <option value="802">RX-802</option>
-                                <option value="804">RX-804</option>
+                                <option value="0.01">RX-801</option>
+                                <option value="0.02">RX-802</option>
+                                <option value="0.04">RX-804</option>
                             </select><br><br>
                             <button type="button" onclick="SetCattrMax()">Set Max Level<br>
                         </div>
@@ -73,32 +73,36 @@
                             <h4>Environment Attribute</h4>
                             <label for="sec">Space Security Level</label><br>
                             <select id="sec" name="Security">
-                                <option value="ns">Null Sec/Wormhole (<0.1)</option>
-                                <option value="ls">Low Sec (0.1-0.4)</option>
-                                <option value="hs">High Sec (>0.5)</option>
+                                <option value="0.12">Null Sec/Wormhole (<0.1)</option>
+                                <option value="0.06">Low Sec (0.1-0.4)</option>
+                                <option value="0.00">High Sec (>0.5)</option>
                             </select><br><br>
                             <label for="stru">Structure</label><br>
                             <select id="stru" name="Structure">
                                 <!-- <option value="sta">Station</option> -->
-                                <option value="cit">Citadels</option>
-                                <option value="ath">Athanor</option>
-                                <option value="tat">Tatara</option>
+                                <option value="0.00">Citadels</option>
+                                <option value="0.02">Athanor</option>
+                                <option value="0.055">Tatara</option>
                             </select><br><br>
                             <label for="rig">Reprocessing Rigs</label><br>
                             <select id="rig" name="Rigs" value="0">
                                 <option value="0">None</option>
-                                <option value="T1">T1</option>
-                                <option value="T2">T2</option>
+                                <option value="1">T1</option>
+                                <option value="3">T2</option>
                             </select><br><br>
                         </div>
                         
-                        <button type="button" onclick="Saveall(), displayall()">Save</button>                
+                        <button type="button" onclick="Saveall(),DisplayYield()">Save</button><br><br>             
+                        <label id="SimYield">Simple Ore Efficiency: None%</label><br>
+                        <label id="CohYield">Coherent Ore Efficiency: None%</label><br>
+                        <label id="VarYield">Variegated Ore Efficiency: None%</label><br>
+                        <label id="ComYield">Complex Ore Efficiency: None%</label><br>
+                        <label id="MerYield">Mercoxit Ore Efficiency: None%</label><br>
                     </form>
                 </div>
                 <div id="Ycalculator">
                     
                     <form id="ycalc">
-                        Current Efficiency:<output>0%</output>
                         <textarea id="oreinput" rows="50" cols="60" onclick="this.select()">copy from your inventory and paste your ores here.</textarea>
                         <br>
                         <input type="Submit" value="Get Yield">
