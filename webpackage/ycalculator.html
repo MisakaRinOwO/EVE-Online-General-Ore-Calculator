@@ -34,13 +34,13 @@
                         <div id="cattr">
                             <h4>Character Attribute</h4>
                             <label for="Repro">Reprocessing</label><br>
-                            <input type="range" id="Repro" name="Reprocessing" value="0" max="5"  oninput="Display(this, value)">
+                            <input type="range" id="Repro" name="Reprocessing" value="0" max="5"  oninput="DisplayAndSave(this, this.value)">
                             <output>0</output><br>
                             <label for="ReproEff">Reprocessing Efficiency</label><br>
-                            <input type="range" id="ReproEff" name="Reprocessing Efficiency" value="0" max="5"  oninput="Display(this, value)">
+                            <input type="range" id="ReproEff" name="Reprocessing Efficiency" value="0" max="5"  oninput="DisplayAndSave(this, this.value)">
                             <output>0</output><br>
                             <label for="Imp">Implants (Zainou 'Beancounter' Reprocessing)</label><br>
-                            <select id="Imp" name="Implants" value="0">
+                            <select id="Imp" name="Implants" value="0" onchange="SetVal(this,this.value)">
                                 <option value="0">None</option>
                                 <option value="0.01">RX-801</option>
                                 <option value="0.02">RX-802</option>
@@ -52,19 +52,19 @@
                         <div id="oattr">
                             <h4>Ore Skill Attribute</h4>
                             <label for="simore">Simple Ore Processing</label><br>
-                            <input type="range" id="simore" name="Simple Ore Processing" value="0" max="5"  oninput="Display(this, value)">
+                            <input type="range" id="simore" name="Simple Ore Processing" value="0" max="5"  oninput="DisplayAndSave(this, this.value)">
                             <output>0</output><br>
                             <label for="cohore">Coherent Ore Processing</label><br>
-                            <input type="range" id="cohore" name="Coherent Ore Processing" value="0" max="5"  oninput="Display(this, value)">
+                            <input type="range" id="cohore" name="Coherent Ore Processing" value="0" max="5"  oninput="DisplayAndSave(this, this.value)">
                             <output>0</output><br>
                             <label for="varore">Variegated Ore Processing</label><br>
-                            <input type="range" id="varore" name="Variegated Ore Processing" value="0" max="5"  oninput="Display(this, value)">
+                            <input type="range" id="varore" name="Variegated Ore Processing" value="0" max="5"  oninput="DisplayAndSave(this, this.value)">
                             <output>0</output><br>
                             <label for="comore">Complex Ore Processing</label><br>
-                            <input type="range" id="comore" name="Complex Ore Processing" value="0" max="5"  oninput="Display(this, value)">
+                            <input type="range" id="comore" name="Complex Ore Processing" value="0" max="5"  oninput="DisplayAndSave(this, this.value)">
                             <output>0</output><br>
                             <label for="merore">Mercoxit Ore Processing</label><br>
-                            <input type="range" id="merore" name="Mercoxit Ore Processing" value="0" max="5"  oninput="Display(this, value)">
+                            <input type="range" id="merore" name="Mercoxit Ore Processing" value="0" max="5"  oninput="DisplayAndSave(this, this.value)">
                             <output>0</output><br>
                             <button type="button" onclick="SetOattrMax()">Set Max Level<br>
                         </div>
@@ -72,32 +72,34 @@
                         <div id="eattr">
                             <h4>Environment Attribute</h4>
                             <label for="sec">Space Security Level</label><br>
-                            <select id="sec" name="Security">
-                                <option value="0.12">Null Sec/Wormhole (<0.1)</option>
-                                <option value="0.06">Low Sec (0.1-0.4)</option>
+                            <select id="sec" name="Security" value = "0.00" oninput="SetVal(this,this.value)">
                                 <option value="0.00">High Sec (>0.5)</option>
+                                <option value="0.06">Low Sec (0.1-0.4)</option>
+                                <option value="0.12">Null Sec/Wormhole (<0.1)</option>
+                                
                             </select><br><br>
                             <label for="stru">Structure</label><br>
-                            <select id="stru" name="Structure">
+                            <select id="stru" name="Structure" value = "0.00" oninput="SetVal(this,this.value)">
                                 <!-- <option value="sta">Station</option> -->
                                 <option value="0.00">Citadels</option>
                                 <option value="0.02">Athanor</option>
                                 <option value="0.055">Tatara</option>
                             </select><br><br>
                             <label for="rig">Reprocessing Rigs</label><br>
-                            <select id="rig" name="Rigs" value="0">
+                            <select id="rig" name="Rigs" value="0" oninput="SetVal(this,this.value)">
                                 <option value="0">None</option>
                                 <option value="1">T1</option>
                                 <option value="3">T2</option>
                             </select><br><br>
                         </div>
-                        
-                        <button type="button" onclick="Saveall(),DisplayYield()">Save</button><br><br>             
-                        <label id="SimYield">Simple Ore Efficiency: None%</label><br>
-                        <label id="CohYield">Coherent Ore Efficiency: None%</label><br>
-                        <label id="VarYield">Variegated Ore Efficiency: None%</label><br>
-                        <label id="ComYield">Complex Ore Efficiency: None%</label><br>
-                        <label id="MerYield">Mercoxit Ore Efficiency: None%</label><br>
+                        <h4>Efficiency</h4>
+                        <label id="SimYield">Simple Ore Efficiency: 50%</label><br>
+                        <label id="CohYield">Coherent Ore Efficiency: 50%</label><br>
+                        <label id="VarYield">Variegated Ore Efficiency: 50%</label><br>
+                        <label id="ComYield">Complex Ore Efficiency: 50%</label><br>
+                        <label id="MerYield">Mercoxit Ore Efficiency: 50%</label><br>
+                        <input type="submit" value="Reset"><br><br>             
+
                     </form>
                 </div>
                 <div id="Ycalculator">
@@ -105,7 +107,7 @@
                     <form id="ycalc">
                         <textarea id="oreinput" rows="50" cols="60" onclick="this.select()">copy from your inventory and paste your ores here.</textarea>
                         <br>
-                        <input type="Submit" value="Get Yield">
+                        <button type="button" value="Gyield">Get Yield</button>
                     </form>
                     <br>
                 </div>
