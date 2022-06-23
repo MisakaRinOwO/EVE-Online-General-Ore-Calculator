@@ -7,12 +7,26 @@ var CohOre=0
 var VarOre=0
 var ComOre=0
 var MerOre=0
+var AbyOre=0
 
 var Sec=0
 var Str=0
 var Rig=0
 
+var SimOreEff=0.5
+var CohOreEff=0.5
+var VarOreEff=0.5
+var ComOreEff=0.5
+var MerOreEff=0.5
+var AbyOreEff=0.5
+var batch = {}
 
+const SimOres=['Plagioclase','Pyroxeres','Scordite','Veldspar']
+const CohOres=['Hemorphite','Hedbergite',,'Omber','Kernite','Jaspet']
+const VarOres=['Gneiss','Dark Ochre','Crokite']
+const ComOres=['Bistot','Arkonor','Spodumain']
+const MerOres=['Mercoxit']
+const AbyOres=['Bezdnacine','Rakovene','Talassonite']
 
 const Minerals = ['Tritanium','Pyerite','Mexallon','Isogen','Nocxium','Zydrine','Megacyte','Morphite']
 const Ores = ['Veldspar','Scordite','Pyroxeres','Plagioclase','Omber','Kernite','Jaspet','Hemorphite','Hedbergite','Gneiss','Dark Ochre','Crokite','Bistot','Arkonor','Mercoxit','Spodumain','Bezdnacine','Rakovene','Talassonite']
@@ -75,25 +89,25 @@ const Ores_Data = {'Veldspar':     {'Refinery':{'Tritanium':400},
     }
 
 // #Variants have mineral yield modifier
-const Ore_Variants = {'Veldspar':     {'Veldspar':1.00,'Concentrated Veldspar':1.05,'Dense Veldspar':1.10,'Stable Veldspar':1.15},
-                'Scordite':     {'Scordite':1.00,'Condensed Scordite':1.05,'Massive Scordite':1.10,'Glossy Scordite':1.15},
-                'Pyroxeres':    {'Pyroxeres':1.00,'Solid Pyroxeres':1.05,'Viscous Pyroxeres':1.10,'Opulent Pyroxeres':1.15},
-                'Plagioclase':  {'Plagioclase':1.00,'Azure Plagioclase':1.05,'Rich Plagioclase':1.10,'Sparkling Plagioclase':1.15},
-                'Omber':        {'Omber':1.00,'Silvery Omber':1.05,'Golden Omber':1.10,'Platinoid Omber':1.15},
-                'Kernite':      {'Kernite':1.00,'Luminous Kernite':1.05,'Fiery Kernite':1.10,'Resplendant Kernite':1.15},
-                'Jaspet':       {'Jaspet':1.00,'Pure Jaspet':1.05,'Pristine Jaspet':1.10,'Immaculate Jaspet':1.15},
-                'Hemorphite':   {'Hemorphite':1.00,'Vivid Hemorphite':1.05,'Radiant Hemorphite':1.10,'Scintillating Hemorphite':1.15},
-                'Hedbergite':   {'Hedbergite':1.00,'Vitric Hedbergite':1.05,'Glazed Hedbergite':1.10,'Lustrous Hedbergite':1.15},
-                'Gneiss':       {'Gneiss':1.00,'Iridescent Gneiss':1.05,'Prismatic Gneiss':1.10,'Brilliant Gneiss':1.15},
-                'Dark Ochre':   {'Dark Ochre':1.00,'Onyx Ochre':1.05,'Obsidian Ochre':1.10,'Jet Ochre':1.15},
-                'Crokite':      {'Crokite':1.00,'Sharp Crokite':1.05,'Crystalline Crokite':1.10,'Pellucid Crokite':1.15},
-                'Bistot':       {'Bistot':1.00,'Triclinic Bistot':1.05,'Monoclinic Bistot':1.10,'Cubic Bistot':1.15},
-                'Arkonor':      {'Arkonor':1.00,'Crimson Arkonor':1.05,'Prime Arkonor':1.10,'Flawless Arkonor':1.15},
-                'Mercoxit':     {'Mercoxit':1.00,'Magma Mercoxit':1.05,'Vitreous Mercoxit':1.10},
-                'Spodumain':    {'Spodumain':1.00,'Bright Spodumain':1.05,'Gleaming Spodumain':1.10,'Dazzling Spodumain':1.15},
-                'Bezdnacine':   {'Bezdnacine':1.00,'Bezdnacine':1.05,'Bezdnacine':1.10},
-                'Rakovene':     {'Rakovene':1.00,'Abyssal Rakovene':1.05,'Hadal Rakovene':1.10},
-                'Talassonite':  {'Talassonite':1.00,'Abyssal Talassonite':1.05,'Hadal Talassonite':1.10}
+const Ore_Variants = {'Veldspar':     {'Veldspar':1.00,'Concentrated':1.05,'Dense':1.10,'Stable':1.15},
+                'Scordite':     {'Scordite':1.00,'Condensed':1.05,'Massive':1.10,'Glossy':1.15},
+                'Pyroxeres':    {'Pyroxeres':1.00,'Solid':1.05,'Viscous':1.10,'Opulent':1.15},
+                'Plagioclase':  {'Plagioclase':1.00,'Azure':1.05,'Rich':1.10,'Sparkling':1.15},
+                'Omber':        {'Omber':1.00,'Silvery':1.05,'Golden':1.10,'Platinoid':1.15},
+                'Kernite':      {'Kernite':1.00,'Luminous':1.05,'Fiery':1.10,'Resplendant':1.15},
+                'Jaspet':       {'Jaspet':1.00,'Pure':1.05,'Pristine':1.10,'Immaculate':1.15},
+                'Hemorphite':   {'Hemorphite':1.00,'Vivid':1.05,'Radiant':1.10,'Scintillating':1.15},
+                'Hedbergite':   {'Hedbergite':1.00,'Vitric':1.05,'Glazed':1.10,'Lustrous':1.15},
+                'Gneiss':       {'Gneiss':1.00,'Iridescent':1.05,'Prismatic':1.10,'Brilliant':1.15},
+                'Dark Ochre':   {'Dark Ochre':1.00,'Onyx':1.05,'Obsidian':1.10,'Jet':1.15},
+                'Crokite':      {'Crokite':1.00,'Sharp':1.05,'Crystalline':1.10,'Pellucid':1.15},
+                'Bistot':       {'Bistot':1.00,'Triclinic':1.05,'Monoclinic':1.10,'Cubic':1.15},
+                'Arkonor':      {'Arkonor':1.00,'Crimson':1.05,'Prime':1.10,'Flawless':1.15},
+                'Mercoxit':     {'Mercoxit':1.00,'Magma':1.05,'Vitreous':1.10},
+                'Spodumain':    {'Spodumain':1.00,'Bright':1.05,'Gleaming':1.10,'Dazzling':1.15},
+                'Bezdnacine':   {'Bezdnacine':1.00,'Abyssal':1.05,'Hadal':1.10},
+                'Rakovene':     {'Rakovene':1.00,'Abyssal ':1.05,'Hadal ':1.10},
+                'Talassonite':  {'Talassonite':1.00,'Abyssal':1.05,'Hadal':1.10}
             }
 
 function DisplayAndSave(obj, val){
@@ -126,6 +140,9 @@ function SetVal(obj, val){
         case "merore":
             MerOre = parseFloat(val)
             break
+        case "abyore":
+            AbyOre = parseFloat(val)
+            break
         case "Imp":
             Imp = parseFloat(val)
             break
@@ -145,6 +162,7 @@ function SetVal(obj, val){
     var VarYield = document.getElementById("VarYield")
     var ComYield = document.getElementById("ComYield")
     var MerYield = document.getElementById("MerYield")
+    var AbyYield = document.getElementById("AbyYield")
     // console.log("Sec", Sec, 1+Sec)
     var BaseYield = ((50+Rig)*(1+Sec))*(1+Str)*(1+(0.03*Repro))*(1+(0.02*ReproEff))*(1+Imp)
     SimYield.innerHTML="Simple Ore Efficiency: "+ Round2(BaseYield*(1+(0.02*SimOre))) +"%"
@@ -152,6 +170,13 @@ function SetVal(obj, val){
     VarYield.innerHTML="Variegated Ore Efficiency: "+ Round2(BaseYield*(1+(0.02*VarOre))) +"%"
     ComYield.innerHTML="Complex Ore Efficiency: "+ Round2(BaseYield*(1+(0.02*ComOre))) +"%"
     MerYield.innerHTML="Mercoxit Ore Efficiency: "+ Round2(BaseYield*(1+(0.02*MerOre))) +"%"
+    AbyYield.innerHTML="Abyssal Ore Efficiency: "+ Round2(BaseYield*(1+(0.02*AbyOre))) +"%"
+    SimOreEff=BaseYield*(1+(0.02*SimOre))/100
+    CohOreEff=BaseYield*(1+(0.02*CohOre))/100
+    VarOreEff=BaseYield*(1+(0.02*VarOre))/100
+    ComOreEff=BaseYield*(1+(0.02*ComOre))/100
+    MerOreEff=BaseYield*(1+(0.02*MerOre))/100
+    AbyOreEff=BaseYield*(1+(0.02*AbyOre))/100
     // DisplayYield()
     // console.log(obj.id,val)
 }
@@ -186,6 +211,9 @@ function SetOattrMax(){
     let merore = document.getElementById("merore")
     merore.value=5
     DisplayAndSave(merore,5)
+    let abyore = document.getElementById("abyore")
+    abyore.value=5
+    DisplayAndSave(abyore,5)
 }
 
 
@@ -193,6 +221,77 @@ function SetOattrMax(){
 function Round2(num){
     return Math.round(num * 100) /100
 }
+
+function DisplayOutput(){
+    var leftover = {}
+    var out = {}
+    for(i=0;i<Minerals.length;i++){
+        out[Minerals[i]]=0
+    }
+    var string = document.getElementById("oreinput").value
+    l = string.split('\n')
+    for(i=0;i<l.length;i++){
+        var VarMultiplier=1
+        item = l[i].split('\t')[0]
+        val = parseFloat(l[i].split('\t')[1])
+        batch[item] = val
+        orename=item.split(' ')[item.split(' ').length-1]
+        
+        if(Ores.includes(orename)){
+            OreYieldSize = Object.keys(Ores_Data[orename]["Refinery"]).length
+            OreYieldMinerals = Object.keys(Ores_Data[orename]["Refinery"])
+            OreYieldValues =  Object.values(Ores_Data[orename]["Refinery"])
+            var Eff, SingleYield
+            if(SimOres.includes(orename)){
+                Eff = SimOreEff
+            } else if(CohOres.includes(orename)){
+                Eff = CohOreEff
+            } else if(VarOres.includes(orename)){
+                Eff = VarOreEff
+            } else if(ComOres.includes(orename)){
+                Eff = ComOreEff
+            } else if(MerOres.includes(orename)){
+                Eff = MerOreEff
+            } else if(AbyOres.includes(orename)){
+                Eff = AbyOreEff
+            }
+            
+            if(item.length>1){
+                orevar=item.split(' ')[item.split(' ').length-2]
+                
+                if(orevar!="Compressed"){
+                    VarMultiplier = Ore_Variants[orename][orevar]
+                }
+            }
+            else{
+                // uncompressed ores
+            }
+            if(item.includes("Compressed")){
+                // new compressed ores
+                if(item.includes("Batch")){
+                    // old compressed ores
+                }
+                else{
+                    val/=100
+                }
+                for(c=0;c<OreYieldSize;c++){
+                    SingleYield=OreYieldValues[c]*Eff*VarMultiplier
+                    out[OreYieldMinerals[c]]+=SingleYield*val
+                    console.log(out)
+                }
+            }
+        }
+    }
+    
+    // console.log(out)
+    
+    // area = document.getElementById("Trioutput")
+    // area.innerHTML = Object.keys(batch)
+    // DisplayOutput()
+    // console.log(batch)
+
+}
+
 
 
 // function DisplayYield(){

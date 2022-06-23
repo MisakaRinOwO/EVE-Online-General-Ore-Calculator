@@ -1,0 +1,14 @@
+Batch Compressed Arkonor	2	Arkonor			17.60 m3	469,152.64 ISK
+Batch Compressed Flawless Arkonor	2	Arkonor			17.60 m3	473,376.24 ISK
+Batch Compressed Prime Arkonor	3	Arkonor			26.40 m3	658,920.87 ISK
+Compressed Arkonor	5	Arkonor			0.80 m3	12,900.90 ISK
+Compressed Bistot	1	Bistot			0.16 m3	2,181.35 ISK
+Compressed Crimson Arkonor	1	Arkonor			0.16 m3	2,742.30 ISK
+Compressed Flawless Arkonor	1	Arkonor			0.16 m3	2,624.30 ISK
+Compressed Gneiss	1	Gneiss			0.05 m3	3,924.00 ISK
+Compressed Hemorphite	1	Hemorphite			0.03 m3	1,437.55 ISK
+Compressed Kernite	50	Kernite			0.60 m3	35,659.00 ISK
+Compressed Mercoxit	1	Mercoxit			0.40 m3	48,697.55 ISK
+Compressed Spodumain	1	Spodumain			0.16 m3	24,316.04 ISK
+Compressed Triclinic Bistot	1	Bistot			0.16 m3	2,773.18 ISK
+Compressed Veldspar	1	Veldspar			0 m3	10.48 ISK

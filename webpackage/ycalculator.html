@@ -66,6 +66,9 @@
                             <label for="merore">Mercoxit Ore Processing</label><br>
                             <input type="range" id="merore" name="Mercoxit Ore Processing" value="0" max="5"  oninput="DisplayAndSave(this, this.value)">
                             <output>0</output><br>
+                            <label for="abyore">Abyssal Ore Processing</label><br>
+                            <input type="range" id="abyore" name="Abyssal Ore Processing" value="0" max="5"  oninput="DisplayAndSave(this, this.value)">
+                            <output>0</output><br>
                             <button type="button" onclick="SetOattrMax()">Set Max Level<br>
                         </div>
                         <br>
@@ -98,6 +101,7 @@
                         <label id="VarYield">Variegated Ore Efficiency: 50%</label><br>
                         <label id="ComYield">Complex Ore Efficiency: 50%</label><br>
                         <label id="MerYield">Mercoxit Ore Efficiency: 50%</label><br>
+                        <label id="AbyYield">Abyssal Ore Efficiency: 50%</label><br>
                         <input type="submit" value="Reset"><br><br>             
 
                     </form>
@@ -107,7 +111,16 @@
                     <form id="ycalc">
                         <textarea id="oreinput" rows="50" cols="60" onclick="this.select()">copy from your inventory and paste your ores here.</textarea>
                         <br>
-                        <button type="button" value="Gyield">Get Yield</button>
+                        <button type="button" onclick="DisplayOutput()">Get Yield</button>
+                        <p>Yield:</p>
+                        <p id="Trioutput"></p>
+                        <p id="Pyeoutput"></p>
+                        <p id="Mexoutput"></p>
+                        <p id="Isooutput"></p>
+                        <p id="Nocoutput"></p>
+                        <p id="Zydoutput"></p>
+                        <p id="Megoutput"></p>
+                        <p id="Morutput"></p>
                     </form>
                     <br>
                 </div>

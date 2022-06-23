@@ -1,0 +1,14 @@
+Batch Compressed Arkonor	Arkonor	2
+Batch Compressed Flawless Arkonor	Arkonor	2
+Batch Compressed Prime Arkonor	Arkonor	3
+Compressed Arkonor	Arkonor	5
+Compressed Bistot	Bistot	1
+Compressed Crimson Arkonor	Arkonor	1
+Compressed Flawless Arkonor	Arkonor	1
+Compressed Gneiss	Gneiss	1
+Compressed Hemorphite	Hemorphite	1
+Compressed Kernite	Kernite	50
+Compressed Mercoxit	Mercoxit	1
+Compressed Spodumain	Spodumain	1
+Compressed Triclinic Bistot	Bistot	1
+Compressed Veldspar	Veldspar	1
