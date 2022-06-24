@@ -19,7 +19,6 @@ var VarOreEff=0.5
 var ComOreEff=0.5
 var MerOreEff=0.5
 var AbyOreEff=0.5
-var batch = {}
 
 const SimOres=['Plagioclase','Pyroxeres','Scordite','Veldspar']
 const CohOres=['Hemorphite','Hedbergite',,'Omber','Kernite','Jaspet']
@@ -223,25 +222,26 @@ function Round2(num){
 }
 
 function DisplayOutput(){
-    var leftover = {}
-    var out = {}
+    leftover = []
+    out = []
     for(i=0;i<Minerals.length;i++){
         out[Minerals[i]]=0
     }
+    // console.log(out)
     var string = document.getElementById("oreinput").value
     l = string.split('\n')
     for(i=0;i<l.length;i++){
         var VarMultiplier=1
-        item = l[i].split('\t')[0]
-        val = parseFloat(l[i].split('\t')[1])
-        batch[item] = val
-        orename=item.split(' ')[item.split(' ').length-1]
+        var item = l[i].split('\t')[0]
+        var val = parseFloat(l[i].split('\t')[1])
+        var orename=item.split(' ')[item.split(' ').length-1]
         
         if(Ores.includes(orename)){
-            OreYieldSize = Object.keys(Ores_Data[orename]["Refinery"]).length
-            OreYieldMinerals = Object.keys(Ores_Data[orename]["Refinery"])
-            OreYieldValues =  Object.values(Ores_Data[orename]["Refinery"])
+            var OreYieldSize = Object.keys(Ores_Data[orename]["Refinery"]).length
+            var OreYieldMinerals = Object.keys(Ores_Data[orename]["Refinery"])
+            var OreYieldValues =  Object.values(Ores_Data[orename]["Refinery"])
             var Eff, SingleYield
+            // determine ore efficiency
             if(SimOres.includes(orename)){
                 Eff = SimOreEff
             } else if(CohOres.includes(orename)){
@@ -255,38 +255,53 @@ function DisplayOutput(){
             } else if(AbyOres.includes(orename)){
                 Eff = AbyOreEff
             }
-            
-            if(item.length>1){
-                orevar=item.split(' ')[item.split(' ').length-2]
-                
+            if(item.split(' ').length>1){
+                var orevar=item.split(' ')[item.split(' ').length-2]
                 if(orevar!="Compressed"){
-                    VarMultiplier = Ore_Variants[orename][orevar]
+                    var VarMultiplier = Ore_Variants[orename][orevar]
                 }
             }
             else{
                 // uncompressed ores
+                var orevar=item[0]
             }
-            if(item.includes("Compressed")){
-                // new compressed ores
-                if(item.includes("Batch")){
-                    // old compressed ores
+            if(!item.includes("Batch")){
+                remaind = val%100
+                val = Math.floor(val/100)
+                if(!leftover.includes(item)){
+                    leftover[item] = 0
                 }
-                else{
-                    val/=100
-                }
-                for(c=0;c<OreYieldSize;c++){
-                    SingleYield=OreYieldValues[c]*Eff*VarMultiplier
-                    out[OreYieldMinerals[c]]+=SingleYield*val
-                    console.log(out)
-                }
+                    leftover[item] = remaind
+            }
+            for(c=0;c<OreYieldSize;c++){
+                var SingleYield=OreYieldValues[c]*Eff*VarMultiplier
+                out[OreYieldMinerals[c]]+=SingleYield*val
             }
         }
     }
     
-    // console.log(out)
-    
-    // area = document.getElementById("Trioutput")
-    // area.innerHTML = Object.keys(batch)
+    console.log(out)
+    console.log(leftover)
+    // 
+    Triarea = document.getElementById("Trioutput")
+    Pyearea = document.getElementById("Pyeoutput")
+    Mexarea = document.getElementById("Mexoutput")
+    Isoarea = document.getElementById("Isooutput")
+    Nocarea = document.getElementById("Nocoutput")
+    Zydarea = document.getElementById("Zydoutput")
+    Megarea = document.getElementById("Megoutput")
+    Morarea = document.getElementById("Moroutput")
+
+    Triarea.innerHTML = "Tritanium: "+ Math.floor(out["Tritanium"]).toLocaleString('en-US')
+    Pyearea.innerHTML = "Pyerite: "+ Math.floor(out["Pyerite"]).toLocaleString('en-US')
+    Mexarea.innerHTML = "Mexallon: "+ Math.floor(out["Mexallon"]).toLocaleString('en-US')
+    Isoarea.innerHTML = "Isogen: "+ Math.floor(out["Isogen"]).toLocaleString('en-US')
+    Nocarea.innerHTML = "Nocxium: "+ Math.floor(out["Nocxium"]).toLocaleString('en-US')
+    Zydarea.innerHTML = "Zydrine: "+ Math.floor(out["Zydrine"]).toLocaleString('en-US')
+    Megarea.innerHTML = "Megacyte: "+ Math.floor(out["Megacyte"]).toLocaleString('en-US')
+    Morarea.innerHTML = "Morphite: "+ Math.floor(out["Morphite"]).toLocaleString('en-US')
+
+    // 'Tritanium','Pyerite','Mexallon','Isogen','Nocxium','Zydrine','Megacyte','Morphite'
     // DisplayOutput()
     // console.log(batch)
 
@@ -294,111 +309,3 @@ function DisplayOutput(){
 
 
 
-// function DisplayYield(){
-//     ParseAll()
-//     var SimYield = document.getElementById("SimYield")
-//     var CohYield = document.getElementById("CohYield")
-//     var VarYield = document.getElementById("VarYield")
-//     var ComYield = document.getElementById("ComYield")
-//     var MerYield = document.getElementById("MerYield")
-//     console.log((50+Rig))
-//     console.log(typeof(Rig),Rig)
-//     var BaseYield = ((50+Rig)*(1+Sec))*(1+Str)*(1+(0.03*Repro))*(1+(0.02*ReproEff))*(1+Imp)
-//     SimYield.innerHTML="Simple Ore Efficiency: "+ Round2(BaseYield*(1+(0.02*SimOre))) +"%"
-//     CohYield.innerHTML="Coherent Ore Efficiency: "+ Round2(BaseYield*(1+(0.02*CohOre))) +"%"
-//     VarYield.innerHTML="Variegated Ore Efficiency: "+ Round2(BaseYield*(1+(0.02*VarOre))) +"%"
-//     ComYield.innerHTML="Complex Ore Efficiency: "+ Round2(BaseYield*(1+(0.02*ComOre))) +"%"
-//     MerYield.innerHTML="Mercoxit Ore Efficiency: "+ Round2(BaseYield*(1+(0.02*MerOre))) +"%"
-// }
-
-// function Saveall(){
-//     var form = document.getElementById("attr")
-//     for(e=0; e<form.length;e++ ){
-//         switch(form[e].id){
-//             case "Repro":
-//                 Repro = form[e].value
-//             case "ReproEff":
-//                 ReproEff = form[e].value
-//             case "Imp":
-//                 Imp = form[e].value
-//             case "simore":
-//                 SimOre = form[e].value
-//             case "cohore":
-//                 CohOre = form[e].value
-//             case "varore":
-//                 VarOre = form[e].value
-//             case "comore":
-//                 ComOre = form[e].value
-//             case "merore":
-//                 MerOre = form[e].value
-//             case "sec":
-//                 Sec = form[e].value
-//             case "stru":
-//                 Str = form[e].value
-//             case "rig":
-//                 Rig = form[e].value
-//         }
-//         console.log(form[e])
-//     }
-// }
-
-// function displayall(){
-//     console.log("Repro",Repro)
-//     console.log("ReproEff",ReproEff)
-//     console.log("Imp",Imp)
-//     console.log("SimOre",SimOre)
-//     console.log("CohOre",CohOre)
-//     console.log("VarOre",VarOre)
-//     console.log("ComOre",ComOre)
-//     console.log("MerOre",MerOre)
-//     console.log("Sec",Sec)
-//     console.log("Str",Str)
-//     console.log("Rig",Rig)
-// }
-
-// function Restore(){
-//     var form = document.getElementById("attr")
-//     for(e=0; e<form.length;e++ ){
-//         switch(form[e].id){
-//             case "Repro":
-//                 form[e].value=Repro
-//                 Display(form[e],Repro)
-//             case "ReproEff":
-//                 form[e].value=ReproEff
-//                 Display(form[e],ReproEff)
-//             case "Imp":
-//                 form[e].value=Imp
-//                 Display(form[e],Imp)
-//             case "simore":
-//                 form[e].value=SimOre
-//                 Display(form[e],SimOre)
-//             case "cohore":
-//                 form[e].value=CohOre
-//                 Display(form[e],CohOre)
-//             case "varore":
-//                 form[e].value=VarOre
-//                 Display(form[e],VarOre)
-//             case "comore":
-//                 form[e].value=ComOre
-//                 Display(form[e],ComOre)
-//             case "merore":
-//                 form[e].value=MerOre
-//                 Display(form[e],MerOre)
-//             case "sec":
-//                 switch(Sec){
-//                     case "ns":
-//                         form[e].selectedIndex = 0
-//                     case "ls":
-//                         form[e].selectedIndex = 1
-//                     case "hs":
-//                         form[e].selectedIndex = 2
-//                 }
-//             case "stru":
-//                 form[e].value=Str
-//                 Display(form[e],Str)
-//             case "rig":
-//                 form[e].value=Rig
-//                 Display(form[e],Rig)
-//         }
-//     }
-// }

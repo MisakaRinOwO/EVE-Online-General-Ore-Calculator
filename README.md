@@ -20,3 +20,7 @@ Working on efficiency calculation and display next.
 6/22/2022
 Efficiency calculation and display completed.
 Working on textarea input analysis.
+
+6/23/2022
+Input analysis, calculation and display completed.
+Working on css styling next.

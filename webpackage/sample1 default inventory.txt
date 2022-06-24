@@ -2,13 +2,20 @@ Batch Compressed Arkonor	2
 Batch Compressed Flawless Arkonor	2
 Batch Compressed Prime Arkonor	3
 Compressed Arkonor	5
+Compressed Arkonor	100
 Compressed Crimson Arkonor	1
 Compressed Flawless Arkonor	1
+Bezdnacine	1
 Compressed Bistot	1
 Compressed Triclinic Bistot	1
 Compressed Gneiss	1
+Gneiss	107
 Compressed Hemorphite	1
 Compressed Kernite	50
+Fiery Kernite	120
+Luminous Kernite	5
 Compressed Mercoxit	1
+Magma Mercoxit	105
 Compressed Spodumain	1
+Talassonite	105
 Compressed Veldspar	1
