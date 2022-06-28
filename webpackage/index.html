@@ -1,251 +1,252 @@
 <!DOCTYPE html>
 <html lang="en">
-    <meta charset="UTF-8">
-    <meta name="author" content="Misaka Rin">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="EVE Online, ore, refinary, calculator, mineral, yield">
-    <meta name="description" content="EVE Online ore refinary yield calculator">
     <link rel="stylesheet" href="style.css">
     <script src="index.js"></script>
-    <title>EVE Online Ore Yield Calculator</title>
 
     <head>
-
-        <body>
-            <header>
-                <h1>EVE Online Ore Yield Calculator</h1>
-                <p>By <i>Misaka Rin</i></p>
-                <p>game version as June/20/2022</p>
-                <br>
-                <nav>
-                    <div>
-                        <span><a href="index.html">Home</a></span>
-                        <span><a href="ycalculator.html">Yield Calculator</a></span>
-                        <!-- <span><a href="asettings.html">Attribute Settings</a></span> -->
-                        <span><a href="resources.html">Resources</a></span>
-                    </div>
-                </nav>
-            </header>
-            <hr>
-            <main>
-                <h2>Home</h2>
-                <p style="color:red">This website is created for personal use only, regular maintainance is not guaranteed and Misaka is not reponsible for any loss resulting from using this website!</p>
-                <br>
-                <div id="Refinary Table">
-                    <table>
-                        <thead>
-                            <caption><h2>Refinary Table</h2>(per 100 unit of ore)</caption>
-                            <tr>
-                                <th></th>
-                                <th></th>
-                                <th><img src="mineral icon/Tritanium2.png"></th>
-                                <th><img src="mineral icon/Pyerite2.png"></th>
-                                <th><img src="mineral icon/Mexallon2.png"></th>
-                                <th><img src="mineral icon/Isogen2.png"></th>
-                                <th><img src="mineral icon/Nocxium2.png"></th>
-                                <th><img src="mineral icon/Zydrine2.png"></th>
-                                <th><img src="mineral icon/Megacite2.png"></th>
-                                <th><img src="mineral icon/Morphite2.png"></th>
-                            </tr>
-                            <tr>
-                                <th></th>
-                                <th></th>
-                                <th>Tritanium</th>
-                                <th>Pyerite</th>
-                                <th>Mexallon</th>
-                                <th>Isogen</th>
-                                <th>Nocxium</th>
-                                <th>Zydrine</th>
-                                <th>Megacyte</th>
-                                <th>Morphite</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th><img src="ore icon/Veldspar.png" height="48"></th>
-                                <td><b>Veldspar</b></td>
-                                <td>400</td>
-                            </tr>
-                            <tr>
-                                <th><img src="ore icon/Scordite.png" height="48"></th>
-                                <td><b>Scordite</b></td>
-                                <td>150</td>
-                                <td>90</td>
-                            </tr>
-                            <tr>
-                                <th><img src="ore icon/Pyroxeres.png" height="48"></th>
-                                <td><b>Pyroxeres</b></td>
-                                <td></td>
-                                <td>90</td>
-                                <td>30</td>
-                            </tr>
-                            <tr>
-                                <th><img src="ore icon/Plagioclase.png" height="48"></th>
-                                <td><b>Plagioclase</b></td>
-                                <td>175</td>
-                                <td></td>
-                                <td>70</td>
-                            </tr>
-                            <tr>
-                                <th><img src="ore icon/Omber.png" height="48"></th>
-                                <td><b>Omber</b></td>
-                                <td></td>
-                                <td>90</td>
-                                <td></td>
-                                <td>75</td>
-                            </tr>
-                            <tr>
-                                <th><img src="ore icon/Kernite.png" height="48"></th>
-                                <td><b>Kernite</b></td>
-                                <td></td>
-                                <td></td>
-                                <td>60</td>
-                                <td>120</td>
-                            </tr>
-                            <tr>
-                                <th><img src="ore icon/Jaspet.png" height="48"></th>
-                                <td><b>Jaspet</b></td>
-                                <td></td>
-                                <td></td>
-                                <td>150</td>
-                                <td></td>
-                                <td>50</td>
-                            </tr>
-                            <tr>
-                                <th><img src="ore icon/Hemorphite.png" height="48"></th>
-                                <td><b>Hemorphite</b></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>240</td>
-                                <td>90</td>
-                            </tr>
-                            <tr>
-                                <th><img src="ore icon/Hedbergite.png" height="48"></th>
-                                <td><b>Hedbergite</b></td>
-                                <td></td>
-                                <td>450</td>
-                                <td></td>
-                                <td></td>
-                                <td>120</td>
-                            </tr>
-                            <tr>
-                                <th><img src="ore icon/Gneiss.png" height="48"></th>
-                                <td><b>Gneiss</b></td>
-                                <td></td>
-                                <td>2000</td>
-                                <td>1500</td>
-                                <td>800</td>
-                            </tr>
-                            <tr>
-                                <th><img src="ore icon/Dark Ochre.png" height="48"></th>  
-                                <td><b>Dark Ochre</b></td>
-                                <td></td>
-                                <td></td>
-                                <td>1360</td>
-                                <td>1200</td>
-                                <td>320</td>
-                            </tr>
-                            <tr>
-                                <th><img src="ore icon/Crokite.png" height="48"></th>
-                                <td><b>Crokite</b></td>
-                                <td></td>
-                                <td>800</td>
-                                <td>2000</td>
-                                <td></td>
-                                <td>800</td>
-                            </tr>
-                            <tr>
-                                <th><img src="ore icon/Bistot.png" height="48"></th>
-                                <td><b>Bistot</b></td>
-                                <td></td>
-                                <td>3200</td>
-                                <td>1200</td>
-                                <td></td>
-                                <td></td>
-                                <td>160</td>
-                                
-                            </tr>
-                            <tr>
-                                <th><img src="ore icon/Arkonor.png" height="48"></th>
-                                <td><b>Arkonor</b></td>
-                                <td></td>
-                                <td>3200</td>
-                                <td>1200</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>120</td>
-                            </tr>
-                            <tr>
-                                <th><img src="ore icon/Mercoxit.png" height="48"></th>
-                                <td><b>Mercoxit</b></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>140</td>
-                            </tr>
-                            <tr>
-                                <th><img src="ore icon/Spodumain.png" height="48"></th>
-                                <td><b>Spodumain</b></td>
-                                <td>48000</td>
-                                <td></td>
-                                <td></td>
-                                <td>1000</td>
-                                <td>160</td>
-                                <td>80</td>
-                                <td>40</td>
-                            </tr>
-                            <tr>
-                                <th><img src="ore icon/Bezdnacine.png" height="48"></th>
-                                <td><b>Bezdnacine</b></td>
-                                <td>40000</td>
-                                <td></td>
-                                <td></td>
-                                <td>4800</td>
-                                <td></td>
-                                <td></td>
-                                <td>128</td>
-                            </tr>
-                            <tr>
-                                <th><img src="ore icon/Rakovene.png" height="48"></th>
-                                <td><b>Rakovene</b></td>
-                                <td>40000</td>
-                                <td></td>
-                                <td></td>
-                                <td>3200</td>
-                                <td></td>
-                                <td>200</td>
-                            </tr>
-                            <tr>
-                                <th><img src="ore icon/Talassonite.png" height="48"></th>
-                                <td><b>Talassonite</b></td>
-                                <td>40000</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>960</td>
-                                <td></td>
-                                <td>32</td>
-                            </tr>
-
-
-                        </tbody>
-                    </table>
-                </div>
-            </main>
-            <hr>
-            <footer>
-                <p>© 2022 Misaka Rin, all rights reserved</p>
-            </footer>
-            
-        </body>
-
+        <meta charset="UTF-8">
+        <meta name="author" content="Misaka Rin">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="keywords" content="EVE Online, ore, refinary, calculator, mineral, yield">
+        <meta name="description" content="EVE Online ore refinary yield calculator">
+        <title>EVE Online Ore Yield Calculator</title>
     </head>
+
+    <body>
+        <header>
+            <h1>EVE Online Ore Yield Calculator</h1>
+            <p>By <em>Misaka Rin</em></p>
+            <p>game version as June/20/2022</p>
+            <br>
+            <nav>
+                <div>
+                    <span><a href="index.html">Home</a></span>
+                    <span><a href="ycalculator.html">Yield Calculator</a></span>
+                    <!-- <span><a href="asettings.html">Attribute Settings</a></span> -->
+                    <span><a href="resources.html">Resources</a></span>
+                </div>
+            </nav>
+        </header>
+        <hr  size="5" noshade>
+        <main>
+            <h2>Home</h2>
+            <p style="color:red">This website is created for personal use only, regular maintainance is not guaranteed and Misaka is not reponsible for any loss resulting from using this website!</p>
+            <br>
+            <div id="Refinary Table">
+                <table>
+                    <thead>
+                        <caption><h2>Refinary Table</h2>(per 100 unit of ore)</caption>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th><img src="mineral icon/Tritanium2.png"></th>
+                            <th><img src="mineral icon/Pyerite2.png"></th>
+                            <th><img src="mineral icon/Mexallon2.png"></th>
+                            <th><img src="mineral icon/Isogen2.png"></th>
+                            <th><img src="mineral icon/Nocxium2.png"></th>
+                            <th><img src="mineral icon/Zydrine2.png"></th>
+                            <th><img src="mineral icon/Megacite2.png"></th>
+                            <th><img src="mineral icon/Morphite2.png"></th>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th>Tritanium</th>
+                            <th>Pyerite</th>
+                            <th>Mexallon</th>
+                            <th>Isogen</th>
+                            <th>Nocxium</th>
+                            <th>Zydrine</th>
+                            <th>Megacyte</th>
+                            <th>Morphite</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th><img src="ore icon/Veldspar.png" height="48"></th>
+                            <td><b>Veldspar</b></td>
+                            <td>400</td>
+                        </tr>
+                        <tr>
+                            <th><img src="ore icon/Scordite.png" height="48"></th>
+                            <td><b>Scordite</b></td>
+                            <td>150</td>
+                            <td>90</td>
+                        </tr>
+                        <tr>
+                            <th><img src="ore icon/Pyroxeres.png" height="48"></th>
+                            <td><b>Pyroxeres</b></td>
+                            <td></td>
+                            <td>90</td>
+                            <td>30</td>
+                        </tr>
+                        <tr>
+                            <th><img src="ore icon/Plagioclase.png" height="48"></th>
+                            <td><b>Plagioclase</b></td>
+                            <td>175</td>
+                            <td></td>
+                            <td>70</td>
+                        </tr>
+                        <tr>
+                            <th><img src="ore icon/Omber.png" height="48"></th>
+                            <td><b>Omber</b></td>
+                            <td></td>
+                            <td>90</td>
+                            <td></td>
+                            <td>75</td>
+                        </tr>
+                        <tr>
+                            <th><img src="ore icon/Kernite.png" height="48"></th>
+                            <td><b>Kernite</b></td>
+                            <td></td>
+                            <td></td>
+                            <td>60</td>
+                            <td>120</td>
+                        </tr>
+                        <tr>
+                            <th><img src="ore icon/Jaspet.png" height="48"></th>
+                            <td><b>Jaspet</b></td>
+                            <td></td>
+                            <td></td>
+                            <td>150</td>
+                            <td></td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <th><img src="ore icon/Hemorphite.png" height="48"></th>
+                            <td><b>Hemorphite</b></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>240</td>
+                            <td>90</td>
+                        </tr>
+                        <tr>
+                            <th><img src="ore icon/Hedbergite.png" height="48"></th>
+                            <td><b>Hedbergite</b></td>
+                            <td></td>
+                            <td>450</td>
+                            <td></td>
+                            <td></td>
+                            <td>120</td>
+                        </tr>
+                        <tr>
+                            <th><img src="ore icon/Gneiss.png" height="48"></th>
+                            <td><b>Gneiss</b></td>
+                            <td></td>
+                            <td>2000</td>
+                            <td>1500</td>
+                            <td>800</td>
+                        </tr>
+                        <tr>
+                            <th><img src="ore icon/Dark Ochre.png" height="48"></th>  
+                            <td><b>Dark Ochre</b></td>
+                            <td></td>
+                            <td></td>
+                            <td>1360</td>
+                            <td>1200</td>
+                            <td>320</td>
+                        </tr>
+                        <tr>
+                            <th><img src="ore icon/Crokite.png" height="48"></th>
+                            <td><b>Crokite</b></td>
+                            <td></td>
+                            <td>800</td>
+                            <td>2000</td>
+                            <td></td>
+                            <td>800</td>
+                        </tr>
+                        <tr>
+                            <th><img src="ore icon/Bistot.png" height="48"></th>
+                            <td><b>Bistot</b></td>
+                            <td></td>
+                            <td>3200</td>
+                            <td>1200</td>
+                            <td></td>
+                            <td></td>
+                            <td>160</td>
+                            
+                        </tr>
+                        <tr>
+                            <th><img src="ore icon/Arkonor.png" height="48"></th>
+                            <td><b>Arkonor</b></td>
+                            <td></td>
+                            <td>3200</td>
+                            <td>1200</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>120</td>
+                        </tr>
+                        <tr>
+                            <th><img src="ore icon/Mercoxit.png" height="48"></th>
+                            <td><b>Mercoxit</b></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>140</td>
+                        </tr>
+                        <tr>
+                            <th><img src="ore icon/Spodumain.png" height="48"></th>
+                            <td><b>Spodumain</b></td>
+                            <td>48000</td>
+                            <td></td>
+                            <td></td>
+                            <td>1000</td>
+                            <td>160</td>
+                            <td>80</td>
+                            <td>40</td>
+                        </tr>
+                        <tr>
+                            <th><img src="ore icon/Bezdnacine.png" height="48"></th>
+                            <td><b>Bezdnacine</b></td>
+                            <td>40000</td>
+                            <td></td>
+                            <td></td>
+                            <td>4800</td>
+                            <td></td>
+                            <td></td>
+                            <td>128</td>
+                        </tr>
+                        <tr>
+                            <th><img src="ore icon/Rakovene.png" height="48"></th>
+                            <td><b>Rakovene</b></td>
+                            <td>40000</td>
+                            <td></td>
+                            <td></td>
+                            <td>3200</td>
+                            <td></td>
+                            <td>200</td>
+                        </tr>
+                        <tr>
+                            <th><img src="ore icon/Talassonite.png" height="48"></th>
+                            <td><b>Talassonite</b></td>
+                            <td>40000</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>960</td>
+                            <td></td>
+                            <td>32</td>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+        </main>
+        <hr  size="5" noshade>
+        <footer>
+            <p>© 2022 Misaka Rin, all rights reserved</p>
+        </footer>
+        
+    </body>
+
+    
 
 
 </html>

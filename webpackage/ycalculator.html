@@ -1,141 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
-    <meta charset="UTF-8">
-    <meta name="author" content="Misaka Rin">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="EVE Online ore refinary yield calculator">
     <link rel="stylesheet" href="style.css">
     <script src="index.js"></script>
-    <title>EVE Online Ore Yield Calculator</title>
 
     <head>
-        <body>
-            <header>
-                <h1>EVE Online Ore Yield Calculator</h1>
-                <p>By <i>Misaka Rin</i></p>
-                <p>game version as June/20/2022</p>
-                <br>
-                <nav>
-                    <div>
-                        <span><a href="index.html">Home</a></span>
-                        <span><a href="ycalculator.html">Yield Calculator</a></span>
-                        <!-- <span><a href="asettings.html">Attribute Settings</a></span> -->
-                        <span><a href="resources.html">Resources</a></span>
-                    </div>
-                </nav>
-            </header>
-            <hr>
-            <main>
-                <h2>Yield Calculator</h2>
-                <p style="color:red">This website is created for personal use only, regular maintainance is not guaranteed and Misaka is not reponsible for any loss resulting from using this website!</p>
-                    
-                <div id="Asettings">
-                    <form id="attr">
-                        <div id="cattr">
-                            <h4>Character Attribute</h4>
-                            <label for="Repro">Reprocessing</label><br>
-                            <input type="range" id="Repro" name="Reprocessing" value="0" max="5"  oninput="DisplayAndSave(this, this.value)">
-                            <output>0</output><br>
-                            <label for="ReproEff">Reprocessing Efficiency</label><br>
-                            <input type="range" id="ReproEff" name="Reprocessing Efficiency" value="0" max="5"  oninput="DisplayAndSave(this, this.value)">
-                            <output>0</output><br>
-                            <label for="Imp">Implants (Zainou 'Beancounter' Reprocessing)</label><br>
-                            <select id="Imp" name="Implants" value="0" onchange="SetVal(this,this.value)">
-                                <option value="0">None</option>
-                                <option value="0.01">RX-801</option>
-                                <option value="0.02">RX-802</option>
-                                <option value="0.04">RX-804</option>
-                            </select><br><br>
-                            <button type="button" onclick="SetCattrMax()">Set Max Level<br>
-                        </div>
-                        <br>
-                        <div id="oattr">
-                            <h4>Ore Skill Attribute</h4>
-                            <label for="simore">Simple Ore Processing</label><br>
-                            <input type="range" id="simore" name="Simple Ore Processing" value="0" max="5"  oninput="DisplayAndSave(this, this.value)">
-                            <output>0</output><br>
-                            <label for="cohore">Coherent Ore Processing</label><br>
-                            <input type="range" id="cohore" name="Coherent Ore Processing" value="0" max="5"  oninput="DisplayAndSave(this, this.value)">
-                            <output>0</output><br>
-                            <label for="varore">Variegated Ore Processing</label><br>
-                            <input type="range" id="varore" name="Variegated Ore Processing" value="0" max="5"  oninput="DisplayAndSave(this, this.value)">
-                            <output>0</output><br>
-                            <label for="comore">Complex Ore Processing</label><br>
-                            <input type="range" id="comore" name="Complex Ore Processing" value="0" max="5"  oninput="DisplayAndSave(this, this.value)">
-                            <output>0</output><br>
-                            <label for="merore">Mercoxit Ore Processing</label><br>
-                            <input type="range" id="merore" name="Mercoxit Ore Processing" value="0" max="5"  oninput="DisplayAndSave(this, this.value)">
-                            <output>0</output><br>
-                            <label for="abyore">Abyssal Ore Processing</label><br>
-                            <input type="range" id="abyore" name="Abyssal Ore Processing" value="0" max="5"  oninput="DisplayAndSave(this, this.value)">
-                            <output>0</output><br>
-                            <button type="button" onclick="SetOattrMax()">Set Max Level<br>
-                        </div>
-                        <br>
-                        <div id="eattr">
-                            <h4>Environment Attribute</h4>
-                            <label for="sec">Space Security Level</label><br>
-                            <select id="sec" name="Security" value = "0.00" oninput="SetVal(this,this.value)">
-                                <option value="0.00">High Sec (>0.5)</option>
-                                <option value="0.06">Low Sec (0.1-0.4)</option>
-                                <option value="0.12">Null Sec/Wormhole (<0.1)</option>
-                                
-                            </select><br><br>
-                            <label for="stru">Structure</label><br>
-                            <select id="stru" name="Structure" value = "0.00" oninput="SetVal(this,this.value)">
-                                <!-- <option value="sta">Station</option> -->
-                                <option value="0.00">Citadels</option>
-                                <option value="0.02">Athanor</option>
-                                <option value="0.055">Tatara</option>
-                            </select><br><br>
-                            <label for="rig">Reprocessing Rigs</label><br>
-                            <select id="rig" name="Rigs" value="0" oninput="SetVal(this,this.value)">
-                                <option value="0">None</option>
-                                <option value="1">T1</option>
-                                <option value="3">T2</option>
-                            </select><br><br>
-                        </div>
-                        <h4>Efficiency</h4>
-                        <label id="SimYield">Simple Ore Efficiency: 50%</label><br>
-                        <label id="CohYield">Coherent Ore Efficiency: 50%</label><br>
-                        <label id="VarYield">Variegated Ore Efficiency: 50%</label><br>
-                        <label id="ComYield">Complex Ore Efficiency: 50%</label><br>
-                        <label id="MerYield">Mercoxit Ore Efficiency: 50%</label><br>
-                        <label id="AbyYield">Abyssal Ore Efficiency: 50%</label><br>
-                        <input type="submit" value="Reset"><br><br>             
-
-                    </form>
-                </div>
-                <div id="Ycalculator">
-                    
-                    <form id="ycalc">
-                        <textarea id="oreinput" rows="50" cols="60" onclick="this.select()">copy from your inventory and paste your ores here.</textarea>
-                        <br>
-                        <button type="button" onclick="DisplayOutput()">Get Yield</button>
-                        <p>Yield:</p>
-                        <p style="color:red">Ore amount less than 100 is not counted, except for batch compressed ores.</p>
-                        <p id="Trioutput"></p>
-                        <p id="Pyeoutput"></p>
-                        <p id="Mexoutput"></p>
-                        <p id="Isooutput"></p>
-                        <p id="Nocoutput"></p>
-                        <p id="Zydoutput"></p>
-                        <p id="Megoutput"></p>
-                        <p id="Moroutput"></p>
-                    </form>
-                    <br>
-                </div>
-
-
-                
-            </main>
-            <hr>
-            <footer>
-                <p>© 2022 Misaka Rin, all rights reserved</p>
-            </footer>
-
-        </body>
+        <meta charset="UTF-8">
+        <meta name="author" content="Misaka Rin">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="EVE Online ore refinary yield calculator">
+        <title>EVE Online Ore Yield Calculator</title>
     </head>
+
+    <body>
+        <header>
+            <h1>EVE Online Ore Yield Calculator</h1>
+            <p>By <em>Misaka Rin</em></p>
+            <p>game version as June/20/2022</p>
+            <br>
+            <nav>
+                <div>
+                    <span><a href="index.html">Home</a></span>
+                    <span><a href="ycalculator.html">Yield Calculator</a></span>
+                    <!-- <span><a href="asettings.html">Attribute Settings</a></span> -->
+                    <span><a href="resources.html">Resources</a></span>
+                </div>
+            </nav>
+        </header>
+        <hr size="5" noshade>
+        <main>
+            <h2>Yield Calculator</h2>
+            <p style="color:red">This website is created for personal use only, regular maintainance is not guaranteed and Misaka is not reponsible for any loss resulting from using this website!</p>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <table id="Asettings">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div id="eattr">
+                                                <h4>Environment Attribute</h4>
+                                                <label for="sec">Space Security Level</label><br>
+                                                <select id="sec" name="Security" value = "0.00" oninput="SetVal(this,this.value)">
+                                                    <option value="0.00">High Sec (>0.5)</option>
+                                                    <option value="0.06">Low Sec (0.1-0.4)</option>
+                                                    <option value="0.12">Null Sec/Wormhole (<0.1)</option>
+                                                    
+                                                </select><br><br>
+                                                <label for="stru">Structure</label><br>
+                                                <select id="stru" name="Structure" value = "0.00" oninput="SetVal(this,this.value)">
+                                                    <!-- <option value="sta">Station</option> -->
+                                                    <option value="0.00">Citadels</option>
+                                                    <option value="0.02">Athanor</option>
+                                                    <option value="0.055">Tatara</option>
+                                                </select><br><br>
+                                                <label for="rig">Reprocessing Rigs</label><br>
+                                                <select id="rig" name="Rigs" value="0" oninput="SetVal(this,this.value)">
+                                                    <option value="0">None</option>
+                                                    <option value="1">T1</option>
+                                                    <option value="3">T2</option>
+                                                </select><br><br>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div id="oattr">
+                                                <h4>Ore Skill Attribute</h4>
+                                                <label for="simore">Simple Ore Processing</label><br>
+                                                <input type="range" id="simore" name="Simple Ore Processing" value="0" max="5"  oninput="DisplayAndSave(this, this.value)">
+                                                <output>0</output><br>
+                                                <label for="cohore">Coherent Ore Processing</label><br>
+                                                <input type="range" id="cohore" name="Coherent Ore Processing" value="0" max="5"  oninput="DisplayAndSave(this, this.value)">
+                                                <output>0</output><br>
+                                                <label for="varore">Variegated Ore Processing</label><br>
+                                                <input type="range" id="varore" name="Variegated Ore Processing" value="0" max="5"  oninput="DisplayAndSave(this, this.value)">
+                                                <output>0</output><br>
+                                                <label for="comore">Complex Ore Processing</label><br>
+                                                <input type="range" id="comore" name="Complex Ore Processing" value="0" max="5"  oninput="DisplayAndSave(this, this.value)">
+                                                <output>0</output><br>
+                                                <label for="merore">Mercoxit Ore Processing</label><br>
+                                                <input type="range" id="merore" name="Mercoxit Ore Processing" value="0" max="5"  oninput="DisplayAndSave(this, this.value)">
+                                                <output>0</output><br>
+                                                <label for="abyore">Abyssal Ore Processing</label><br>
+                                                <input type="range" id="abyore" name="Abyssal Ore Processing" value="0" max="5"  oninput="DisplayAndSave(this, this.value)">
+                                                <output>0</output><br>
+                                                <button type="button" onclick="SetOattrMax()">Set Max Level<br>
+                                            </div>
+                                        </td>
+                                        
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div id="cattr">
+                                                <h4>Character Attribute</h4>
+                                                <label for="Repro">Reprocessing</label><br>
+                                                <input type="range" id="Repro" name="Reprocessing" value="0" max="5"  oninput="DisplayAndSave(this, this.value)">
+                                                <output>0</output><br>
+                                                <label for="ReproEff">Reprocessing Efficiency</label><br>
+                                                <input type="range" id="ReproEff" name="Reprocessing Efficiency" value="0" max="5"  oninput="DisplayAndSave(this, this.value)">
+                                                <output>0</output><br>
+                                                <label for="Imp">Implants (Zainou 'Beancounter' Reprocessing)</label><br>
+                                                <select id="Imp" name="Implants" value="0" onchange="SetVal(this,this.value)">
+                                                    <option value="0">None</option>
+                                                    <option value="0.01">RX-801</option>
+                                                    <option value="0.02">RX-802</option>
+                                                    <option value="0.04">RX-804</option>
+                                                </select><br><br>
+                                                <button type="button" onclick="SetCattrMax()">Set Max Level<br>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div id="eff">
+                                                <h4>Efficiency</h4>
+                                                <label id="SimYield">Simple Ore Efficiency: 50%</label><br>
+                                                <label id="CohYield">Coherent Ore Efficiency: 50%</label><br>
+                                                <label id="VarYield">Variegated Ore Efficiency: 50%</label><br>
+                                                <label id="ComYield">Complex Ore Efficiency: 50%</label><br>
+                                                <label id="MerYield">Mercoxit Ore Efficiency: 50%</label><br>
+                                                <label id="AbyYield">Abyssal Ore Efficiency: 50%</label><br>
+                                                <input type="submit" value="Reset"><br><br> 
+                                            </div>
+                                        </td>
+                
+                                    </tr>
+                                </tbody>
+                                
+                                
+                            </table>
+                        </td>
+                        <td>
+                            <div id="ycalc">
+                                <h4>Inventory</h4>
+                                <textarea id="oreinput" rows="30" cols="80" onclick="this.select()">copy from your inventory and paste your ores here.</textarea>
+                                <br>
+                                <button type="button" onclick="DisplayOutput()">Get Yield</button>
+                            </div>
+                        </td>
+                        <td>
+                            <div id="youtput">
+                                <p>Yield:</p>
+                                <p style="color:red">Ore amount less than 100 is not counted,</p>
+                                <p style="color:red">except for batch compressed ores.</p>
+                                <p id="Trioutput">Tritanium: 0</p>
+                                <p id="Pyeoutput">Pyerite: 0</p>
+                                <p id="Mexoutput">Mexallon: 0</p>
+                                <p id="Isooutput">Isogen: 0</p>
+                                <p id="Nocoutput">Nocxium: 0</p>
+                                <p id="Zydoutput">Zydrine: 0</p>
+                                <p id="Megoutput">Megacyte: 0</p>
+                                <p id="Moroutput">Morphite: 0</p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <br>
+            <div id="Ycalculator">
+
+
+                <br>
+            </div>
+
+
+            
+        </main>
+        <hr  size="5" noshade>
+        <footer>
+            <p>© 2022 Misaka Rin, all rights reserved</p>
+        </footer>
+
+    </body>
 
 
 
